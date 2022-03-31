@@ -21,16 +21,13 @@ let novoUsuario = {
 
 let emailValido = false;
 let senhaValida = false;
+let nomeValido = false;
 
 // Validação para verificar se os campos estão preenchidos e se estiverem para normalizar, deixar sem espaços e tudo minusculo, exceto o apelido.
 
 botaoCriarConta.addEventListener("click", (e) => {
-  e.preventDefault();
-  // inputNome.value != "" &&
-  // inputApelido.value != "" &&
-  // inputEmail.value != "" &&       Estava dentro do IF, estou testando a criação da função do botão.
-  // inputSenha.value != "" &&
-  // inputRepetirSenha.value != ""
+  e.preventDefault(); // está aqui para fins de teste (visualizar no console do navegador)
+ 
 
   if (validacaoTelaDeLogin()) {
     // Normalizando os inputs
@@ -56,10 +53,38 @@ botaoCriarConta.addEventListener("click", (e) => {
 
     console.log(novoUsuario);
   } else {
-    event.preventDefault();
+   
     alert("Ambos os campos devem ser preenchidos !");
   }
 });
+
+// Validação do campo de nome
+
+inputNome.addEventListener('blur', () => {
+
+  let smallNome = document.getElementById('smallNome')
+  
+  if (inputNome.value != "") {
+    smallNome.innerText = "";
+    inputNome.style.border = "1px solid #45dd45a1";
+
+    nomeValido = true;
+
+  } else {
+    smallNome.innerText = "Nome é obrigatório !"
+    smallNome.style.color = "red";
+    smallNome.style.fontWeight = "bold";
+    smallNome.style.marginTop = "5px";
+    smallNome.style.fontSize = "11px";
+    inputNome.style.border = "1px solid red";
+    
+   nomeValido = false;
+    
+  }
+  validacaoTelaDeLogin();
+
+})
+
 
 // Validação do campo de e-mail
 
@@ -77,7 +102,7 @@ inputEmail.addEventListener("blur", () => {
   } else {
     smallEmail.innerText = "E-mail inválido";
     smallEmail.style.color = "red";
-    smallEmail.style.fontSize = "8px";
+    smallEmail.style.fontSize = "11px";
     smallEmail.style.fontWeight = "bold";
     smallEmail.style.marginTop = "5px";
 
@@ -112,21 +137,36 @@ inputSenha.addEventListener("keyup", () => {
   //   senhaValida = false;
   // }
 
-  if (inputSenha.value.length === 1) {
+  if (inputSenha.value != "" && inputSenha.value.length >= 1 && inputSenha.value.length <= 4) {
     inputSenha.style.border = "1px solid red";
+    smallSenha.style.fontWeight = "bold"
     smallSenha.innerText = "Senha muito fraca 😥";
     smallSenha.style.color = "red";
     smallSenha.style.marginTop = "10px";
-  } else if (inputSenha.value.length === 4) {
+    smallSenha.style.fontSize = "11px";
+    
+      
+  } else if (inputSenha.value != "" && inputSenha.value.length >= 5 && inputSenha.value.length <= 7) {
     inputSenha.style.border = "1px solid orange";
+    smallSenha.style.fontWeight = "bold"
     smallSenha.style.color = "orange";
     smallSenha.innerText = "Estamos quase lá 😀";
     smallSenha.style.marginTop = "10px";
-  } else if (inputSenha.value.length === 6) {
+    smallSenha.style.fontSize = "11px";
+    
+      
+  } else if (inputSenha.value != "" && inputSenha.value.length >= 8) {
     inputSenha.style.border = "1px solid #45dd45a1";
-    smallSenha.style.color = "#45dd45a1";
+    smallSenha.style.fontWeight = "bold"
+    smallSenha.style.color = "#45dd45";
     smallSenha.innerText = "Senha forte 💪";
     smallSenha.style.marginTop = "10px";
+    smallSenha.style.fontSize = "11px";
+    
+    senhaValida = true;  
+  } else {
+    smallSenha.innerText = "";
+    senhaValida = false;  
   }
 
   validacaoTelaDeLogin();
@@ -144,10 +184,10 @@ inputRepetirSenha.addEventListener("keyup", () => {
     senhaValida = true;
   } else {
     smallRepetirSenha.innerHTML = "Senha errada";
-    smallRepetirSenha.style.fontSize = "8px";
     smallRepetirSenha.style.fontWeight = "bold";
     smallRepetirSenha.style.marginTop = "5px";
     smallRepetirSenha.style.color = "red";
+    smallRepetirSenha.style.fontSize = "11px";
 
     inputRepetirSenha.style.border = "1px solid red";
     senhaValida = false;
@@ -157,7 +197,7 @@ inputRepetirSenha.addEventListener("keyup", () => {
 
 function validacaoTelaDeLogin() {
   // Função criada para haiblitar o botão ou não.
-  if (emailValido === true && senhaValida === true) {
+  if (emailValido === true && senhaValida === true && nomeValido === true) {
     // Se o e-mail for válido (true), ele habilita o botão e troca o texto para acessar
 
     botaoCriarConta.removeAttribute("disabled");
