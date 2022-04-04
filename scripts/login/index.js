@@ -9,31 +9,57 @@ let emailEValido = false;
 
 const usuarioObjeto = {
   email: "",
-  senha: "",
+  password: "",
 };
 
 botaoAcessar.addEventListener("click", (event) => {
   if (validacaoTelaDeLogin()) {
-    event.preventDefault();
+     event.preventDefault();
     // se os campos nnão forem vazios, faça isso
 
     // Tirando os espaços em brancos dos valores
     campoEmailLoginNormalizado = retiraEspacosDeUmValor(campoEmailLogin.value);
     campoSenhaLoginNormalizado = retiraEspacosDeUmValor(campoSenhaLogin.value);
-    campoEmailLoginNormalizado = conventerValorRecebidoParaMinusculo(campoEmailLoginNormalizado);
+    campoEmailLoginNormalizado = conventerValorRecebidoParaMinusculo(
+      campoEmailLoginNormalizado
+    );
     campoSenhaLogin = conventerValorRecebidoParaMinusculo(
       campoSenhaLoginNormalizado
     );
 
-    console.log(campoEmailLoginNormalizado);
-    console.log(campoSenhaLogin);
+    // console.log(campoEmailLoginNormalizado);
+    // console.log(campoSenhaLogin);
 
     //Populando o objeto com as informações normalizadas
 
     usuarioObjeto.email = campoEmailLoginNormalizado;
-    usuarioObjeto.senha = campoSenhaLoginNormalizado;
+    usuarioObjeto.password = campoSenhaLoginNormalizado;
 
-     console.log(usuarioObjeto);
+    // @ Incluindo acesso a API com o Login
+    let loginUsuarioJson = JSON.stringify(usuarioObjeto);
+
+    let endPointLogin = "https://ctd-todo-api.herokuapp.com/v1/users/login";
+
+    let configRequisicao = {
+      method: "POST",
+      body: 
+        loginUsuarioJson,
+      headers: {
+        "content-type": "application/json",
+      },
+    };
+    fetch(endPointLogin, configRequisicao)
+    .then((result) => {
+      return result.json()
+    })
+    .then((result) => {
+      console.log(result.jwt);
+    })
+    .catch((erro) => {
+      console.log(erro);
+    })
+
+
   } else {
     alert("Ambos os campos devem ser informados!"); // se não, alerte.
     event.preventDefault(); //Não permite que o formulário seja executado / realizado o 'submit'

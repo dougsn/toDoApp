@@ -12,11 +12,10 @@ let campoSenhaNormalizado;
 let campoRepetirSenhaNormalizado;
 
 let novoUsuario = {
-  nome: "",
-  apelido: "",
+  firstName: "",
+  lastName: "",
   email: "",
-  senha: "",
-  repetirSenha: "",
+  password: "",
 };
 
 let emailValido = false;
@@ -27,10 +26,9 @@ let nomeValido = false;
 
 botaoCriarConta.addEventListener("click", (e) => {
   e.preventDefault(); // está aqui para fins de teste (visualizar no console do navegador)
- 
 
   if (validacaoTelaDeLogin()) {
-    // Normalizando os inputs
+    // Normalizando os inputs'
     campoNomeNormalizado = retiraEspacosDeUmValor(inputNome.value);
     campoNomeNormalizado = conventerValorRecebidoParaMinusculo(inputNome.value);
     campoApelidoNormalizado = retiraEspacosDeUmValor(inputApelido.value);
@@ -45,46 +43,67 @@ botaoCriarConta.addEventListener("click", (e) => {
       inputRepetirSenha.value
     );
 
-    novoUsuario.nome = campoNomeNormalizado;
-    novoUsuario.apelido = campoApelidoNormalizado;
+    novoUsuario.firstName = campoNomeNormalizado;
+    novoUsuario.lastName = campoApelidoNormalizado;
     novoUsuario.email = campoEmailNormalizado;
-    novoUsuario.senha = campoSenhaNormalizado;
+    novoUsuario.password = campoSenhaNormalizado;
     novoUsuario.repetirSenha = campoRepetirSenhaNormalizado;
 
-    console.log(novoUsuario);
+
+
+    // @ Criando um novo usuário pela API
+    let cadastroJson = JSON.stringify(novoUsuario);
+    let endPointLogin = "https://ctd-todo-api.herokuapp.com/v1/users";
+
+    let configNewUser = {
+      method: "POST",
+      body: 
+        cadastroJson,
+      headers: {
+        "content-type": "application/json",
+      },
+    };
+
+    fetch(endPointLogin, configNewUser).then(
+      (result) => {
+        return result.json();
+    }
+    ).then(
+      (result) => {
+        console.log(result.jwt);
+    }
+    ).catch(
+      (erro) => {
+        console.log(erro);
+      }
+    );
   } else {
-   
     alert("Ambos os campos devem ser preenchidos !");
   }
 });
 
 // Validação do campo de nome
 
-inputNome.addEventListener('blur', () => {
+inputNome.addEventListener("blur", () => {
+  let smallNome = document.getElementById("smallNome");
 
-  let smallNome = document.getElementById('smallNome')
-  
   if (inputNome.value != "") {
     smallNome.innerText = "";
     inputNome.style.border = "1px solid #45dd45a1";
 
     nomeValido = true;
-
   } else {
-    smallNome.innerText = "Nome é obrigatório !"
+    smallNome.innerText = "Nome é obrigatório !";
     smallNome.style.color = "red";
     smallNome.style.fontWeight = "bold";
     smallNome.style.marginTop = "5px";
     smallNome.style.fontSize = "11px";
     inputNome.style.border = "1px solid red";
-    
-   nomeValido = false;
-    
+
+    nomeValido = false;
   }
   validacaoTelaDeLogin();
-
-})
-
+});
 
 // Validação do campo de e-mail
 
@@ -118,55 +137,40 @@ inputEmail.addEventListener("blur", () => {
 inputSenha.addEventListener("keyup", () => {
   let smallSenha = document.getElementById("smallSenha");
 
-  // if (
-  //   inputSenha.value != "" &&
-  //   inputSenha.value.length >= 6 &&
-  //   inputSenha.value.length <= 10
-  // ) {
-  //   smallSenha.innerText = "";
-  //   inputSenha.style.border = "1px solid #45dd45a1";
-  //   senhaValida = true;                                          Estava antes, testando outras possibilidades.
-  // } else {
-  //   smallSenha.innerText = "Senha inválido";
-  //   smallSenha.style.color = "red";
-  //   smallSenha.style.fontSize = "8px";
-  //   smallSenha.style.fontWeight = "bold";
-  //   smallSenha.style.marginTop = "5px";
-
-  //   inputSenha.style.border = "1px solid red";
-  //   senhaValida = false;
-  // }
-
-  if (inputSenha.value != "" && inputSenha.value.length >= 1 && inputSenha.value.length <= 4) {
+  if (
+    inputSenha.value != "" &&
+    inputSenha.value.length >= 1 &&
+    inputSenha.value.length <= 4
+  ) {
     inputSenha.style.border = "1px solid red";
-    smallSenha.style.fontWeight = "bold"
+    smallSenha.style.fontWeight = "bold";
     smallSenha.innerText = "Senha muito fraca 😥";
     smallSenha.style.color = "red";
     smallSenha.style.marginTop = "10px";
     smallSenha.style.fontSize = "11px";
-    
-      
-  } else if (inputSenha.value != "" && inputSenha.value.length >= 5 && inputSenha.value.length <= 7) {
+  } else if (
+    inputSenha.value != "" &&
+    inputSenha.value.length >= 5 &&
+    inputSenha.value.length <= 7
+  ) {
     inputSenha.style.border = "1px solid orange";
-    smallSenha.style.fontWeight = "bold"
+    smallSenha.style.fontWeight = "bold";
     smallSenha.style.color = "orange";
     smallSenha.innerText = "Estamos quase lá 😀";
     smallSenha.style.marginTop = "10px";
     smallSenha.style.fontSize = "11px";
-    
-      
   } else if (inputSenha.value != "" && inputSenha.value.length >= 8) {
     inputSenha.style.border = "1px solid #45dd45a1";
-    smallSenha.style.fontWeight = "bold"
+    smallSenha.style.fontWeight = "bold";
     smallSenha.style.color = "#45dd45";
     smallSenha.innerText = "Senha forte 💪";
     smallSenha.style.marginTop = "10px";
     smallSenha.style.fontSize = "11px";
-    
-    senhaValida = true;  
+
+    senhaValida = true;
   } else {
     smallSenha.innerText = "";
-    senhaValida = false;  
+    senhaValida = false;
   }
 
   validacaoTelaDeLogin();
