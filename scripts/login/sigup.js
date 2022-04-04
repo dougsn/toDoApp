@@ -70,7 +70,7 @@ botaoCriarConta.addEventListener("click", (e) => {
     }
     ).then(
       (result) => {
-        console.log(result.jwt);
+        console.log(result);
     }
     ).catch(
       (erro) => {
