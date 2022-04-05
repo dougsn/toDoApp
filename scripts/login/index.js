@@ -14,7 +14,7 @@ const usuarioObjeto = {
 
 botaoAcessar.addEventListener("click", (event) => {
   if (validacaoTelaDeLogin()) {
-     event.preventDefault();
+    event.preventDefault()
     // se os campos nnão forem vazios, faça isso
 
     // Tirando os espaços em brancos dos valores
@@ -53,7 +53,7 @@ botaoAcessar.addEventListener("click", (event) => {
       return result.json()
     })
     .then((result) => {
-      console.log(result.jwt);
+      loginSucesso(result.jwt)
     })
     .catch((erro) => {
       console.log(erro);
@@ -66,8 +66,18 @@ botaoAcessar.addEventListener("click", (event) => {
   }
 });
 
+function loginSucesso(tokenJwt) {
+
+  localStorage.setItem("jwt", tokenJwt) // Salvando o token no localStorage para consulta no script de tarefas.
+
+  alert("Usuário logado com sucesso !")
+
+  location.href = "tarefas.html" // Direcionando para a página quando o user for valido
+
+}
+
 // Validação quando sair do campo do input (blur)
-campoEmailLogin.addEventListener("blur", (event) => {
+campoEmailLogin.addEventListener("blur", () => {
   let inputEmailValidacao = document.getElementById("inputEmailValidacao");
 
   if (
@@ -93,7 +103,7 @@ campoEmailLogin.addEventListener("blur", (event) => {
   validacaoTelaDeLogin();
 });
 
-campoSenhaLogin.addEventListener("change", (event) => {
+campoSenhaLogin.addEventListener("change", () => {
   // O change valida em tempo real
   let inputSenhaValidacao = document.getElementById("inputSenhaValidacao");
 

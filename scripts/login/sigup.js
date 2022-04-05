@@ -71,6 +71,7 @@ botaoCriarConta.addEventListener("click", (e) => {
     ).then(
       (result) => {
         console.log(result.jwt);
+        window.location.href = "index.html" // Redireciona para a página de login
     }
     ).catch(
       (erro) => {
