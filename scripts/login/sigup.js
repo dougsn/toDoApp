@@ -70,8 +70,12 @@ botaoCriarConta.addEventListener("click", (e) => {
     }
     ).then(
       (result) => {
-        console.log(result.jwt);
+<<<<<<< HEAD
+       
         window.location.href = "index.html" // Redireciona para a página de login
+=======
+        
+>>>>>>> cc2c1df6732d5d90d6742563acdb0884977f009b
     }
     ).catch(
       (erro) => {
