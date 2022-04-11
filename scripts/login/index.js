@@ -41,23 +41,32 @@ botaoAcessar.addEventListener("click", (event) => {
     let endPointLogin = "https://ctd-todo-api.herokuapp.com/v1/users/login";
 
     let configRequisicao = {
-      method: "POST",
+      method: 'POST',
       body: 
         loginUsuarioJson,
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
     };
     fetch(endPointLogin, configRequisicao)
-    .then((result) => {
+    .then(result => {
       return result.json()
     })
-    .then((result) => {
-      loginSucesso(result.jwt)
+    .then(result => {
+      loginSucesso(result.jwt);
     })
-    .catch((erro) => {
+    .catch(erro => {
       console.log(erro);
     })
+    function loginSucesso(tokenJwt) {
+
+      localStorage.setItem("jwt", tokenJwt) // Salvando o token no localStorage para consulta no script de tarefas.
+      
+      alert("Usuário logado com sucesso !")
+      location.href = "tarefas.html"
+       // Direcionando para a página quando o user for valido
+    
+    }
 
 
   } else {
@@ -66,15 +75,7 @@ botaoAcessar.addEventListener("click", (event) => {
   }
 });
 
-function loginSucesso(tokenJwt) {
 
-  localStorage.setItem("jwt", tokenJwt) // Salvando o token no localStorage para consulta no script de tarefas.
-
-  alert("Usuário logado com sucesso !")
-
-  location.href = "tarefas.html" // Direcionando para a página quando o user for valido
-
-}
 
 // Validação quando sair do campo do input (blur)
 campoEmailLogin.addEventListener("blur", () => {

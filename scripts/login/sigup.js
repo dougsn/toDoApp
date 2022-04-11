@@ -49,36 +49,29 @@ botaoCriarConta.addEventListener("click", (e) => {
     novoUsuario.password = campoSenhaNormalizado;
     novoUsuario.repetirSenha = campoRepetirSenhaNormalizado;
 
-
-
     // @ Criando um novo usuário pela API
     let cadastroJson = JSON.stringify(novoUsuario);
     let endPointLogin = "https://ctd-todo-api.herokuapp.com/v1/users";
 
     let configNewUser = {
-      method: "POST",
+      method: 'POST',
       body: 
         cadastroJson,
       headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
     };
 
     fetch(endPointLogin, configNewUser).then(
-      (result) => {
+      result => {
         return result.json();
     }
     ).then(
-      (result) => {
-<<<<<<< HEAD
-       
-        window.location.href = "index.html" // Redireciona para a página de login
-=======
-        
->>>>>>> cc2c1df6732d5d90d6742563acdb0884977f009b
+      result => {
+        console.log(result.jwt);
     }
     ).catch(
-      (erro) => {
+      erro => {
         console.log(erro);
       }
     );
@@ -86,6 +79,8 @@ botaoCriarConta.addEventListener("click", (e) => {
     alert("Ambos os campos devem ser preenchidos !");
   }
 });
+
+
 
 // Validação do campo de nome
 
