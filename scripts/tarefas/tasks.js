@@ -22,4 +22,21 @@ onload = () => {
     .catch((erro) => {
         console.log(erro);
     });
+
+    let endPointTask = "https://ctd-todo-api.herokuapp.com/v1/tasks";
+    
+    fetch(endPointTask, configRequisicao)
+    .then((result) =>{
+      if(result.status == 200){
+        return result.json();
+      }
+    })
+    .then((result) =>{
+      console.log(result)
+    })
+    .catch((erro) =>{
+      console.log(erro)
+    })
 };
+
+
