@@ -49,6 +49,7 @@ input:focus {
 
 small {
   display: flex;
+  justify-content: center;
 }
 
 label {

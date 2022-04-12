@@ -64,11 +64,13 @@ botaoCriarConta.addEventListener("click", (e) => {
 
     fetch(endPointLogin, configNewUser).then(
       result => {
-        return result.json();
+        if(result.status == 201) {
+          return result.json();
+        }
     }
     ).then(
       result => {
-        console.log(result.jwt);
+        cadastroSucesso()
     }
     ).catch(
       erro => {
@@ -80,7 +82,11 @@ botaoCriarConta.addEventListener("click", (e) => {
   }
 });
 
+function cadastroSucesso() {
+  alert ("Cadastro efetuado com sucesso !")
+  location.href = "index.html"
 
+}
 
 // Validação do campo de nome
 

@@ -14,7 +14,7 @@ const usuarioObjeto = {
 
 botaoAcessar.addEventListener("click", (event) => {
   if (validacaoTelaDeLogin()) {
-    event.preventDefault()
+    event.preventDefault();
     // se os campos nnão forem vazios, faça isso
 
     // Tirando os espaços em brancos dos valores
@@ -23,62 +23,73 @@ botaoAcessar.addEventListener("click", (event) => {
     campoEmailLoginNormalizado = conventerValorRecebidoParaMinusculo(
       campoEmailLoginNormalizado
     );
-    campoSenhaLogin = conventerValorRecebidoParaMinusculo(
-      campoSenhaLoginNormalizado
-    );
-
-    // console.log(campoEmailLoginNormalizado);
-    // console.log(campoSenhaLogin);
+    // campoSenhaLogin = conventerValorRecebidoParaMinusculo(
+    //   campoSenhaLoginNormalizado @@ Quando retirei esse campo de validação, começou a parar o erro no .trim()
+    // );
 
     //Populando o objeto com as informações normalizadas
 
     usuarioObjeto.email = campoEmailLoginNormalizado;
     usuarioObjeto.password = campoSenhaLoginNormalizado;
 
-    // @ Incluindo acesso a API com o Login
+    // @@ Incluindo acesso a API com o Login
     let loginUsuarioJson = JSON.stringify(usuarioObjeto);
 
     let endPointLogin = "https://ctd-todo-api.herokuapp.com/v1/users/login";
 
     let configRequisicao = {
-      method: 'POST',
-      body: 
-        loginUsuarioJson,
+      method: "POST",
+      body: loginUsuarioJson,
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
     };
     fetch(endPointLogin, configRequisicao)
-    .then(result => {
-      return result.json()
-    })
-    .then(result => {
-      loginSucesso(result.jwt);
-    })
-    .catch(erro => {
-      console.log(erro);
-    })
-    function loginSucesso(tokenJwt) {
-
-      localStorage.setItem("jwt", tokenJwt) // Salvando o token no localStorage para consulta no script de tarefas.
-      
-      alert("Usuário logado com sucesso !")
-      location.href = "tarefas.html"
-       // Direcionando para a página quando o user for valido
-    
-    }
-
-
+      .then((result) => {
+        if (result.status == 201) {
+          return result.json();
+        }
+      })
+      .then((result) => {
+        loginSucesso(result.jwt);
+      })
+      .catch((erro) => {
+        loginErro(erro);
+      });
   } else {
     alert("Ambos os campos devem ser informados!"); // se não, alerte.
     event.preventDefault(); //Não permite que o formulário seja executado / realizado o 'submit'
   }
 });
 
+function loginSucesso(tokenJwt) {
+  localStorage.setItem("jwt", tokenJwt); // Salvando o token no localStorage para consulta no script de tarefas.
+
+  alert("Usuário logado com sucesso !");
+  location.href = "tarefas.html";
+  // Direcionando para a página quando o user for valido
+}
 
 
-// Validação quando sair do campo do input (blur)
-campoEmailLogin.addEventListener("blur", () => {
+// @@ Função invocada quando há um erro de requisição na API
+
+function loginErro(erro) {
+  let error = document.getElementById("inputSenhaValidacao")
+  let inputEmailValidacao = document.getElementById("inputEmail");
+  let inputError = document.getElementById("inputPassword")
+
+  error.innerText = "Senha e/ou E-mail inválidos !";
+  error.style.color = "red";
+  error.style.fontSize = "11px";
+  error.style.fontWeight = "bold";
+  error.style.marginTop = "10px"
+
+  inputError.style.border = `1px solid red`;
+  inputEmailValidacao.style.border = `1px solid red`;
+}
+
+// @@ Validação quando sair do campo do input (blur)
+campoEmailLogin.addEventListener("change", () => {
   let inputEmailValidacao = document.getElementById("inputEmailValidacao");
 
   if (
@@ -93,7 +104,6 @@ campoEmailLogin.addEventListener("blur", () => {
     //Se o campo estiver sem nenhum valor...
     inputEmailValidacao.innerText = "E-mail inválido";
     inputEmailValidacao.style.color = "red";
-    inputEmailValidacao.style.fontSize = "8px";
     inputEmailValidacao.style.fontWeight = "bold";
 
     campoEmailLogin.style.border = "1px solid red";
@@ -118,7 +128,7 @@ campoSenhaLogin.addEventListener("change", () => {
     inputSenhaValidacao.style.fontSize = "8px";
     inputSenhaValidacao.style.fontWeight = "bold";
 
-    campoSenhaLogin.style.border = `1px solid red`;
+    campoSenhaLogin.style.border = '1px solid red';
 
     emailEValido = false;
   }
