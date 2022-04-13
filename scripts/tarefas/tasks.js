@@ -90,7 +90,7 @@ onload = () => {
       
     let tarefasPendentesHtml = document.querySelector('.tarefas-pendentes')
         console.log(e);
-        tarefasPendentesHtml.innerHTML = `
+        const pendente = tarefasPendentesHtml.innerHTML = `
         <li class="tarefa">
             <div class="not-done" id="${e.id}"></div>
             <div class="descricao">
