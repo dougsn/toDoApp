@@ -43,41 +43,40 @@ onload = () => {
       console.log(erro);
     });
 
-  // @@ Criando a requisição para criar uma tarefa e amostrar no console.
+  // @@ Criando a requisição para criar uma tarefa e mostrar no console.
 
   let formTarefa = document.querySelector(".nova-tarefa button");
 
   formTarefa.addEventListener("click", (e) => {
     e.preventDefault();
 
-    
-  let inputTarefa = document.getElementById("novaTarea").value;
+    const inputTarefa = document.getElementById("novaTarea").value;
 
+    let bodyNewTask = {
+      "description": inputTarefa,
+      "completed":false
+    }
     
-    let endPointTask = "https://ctd-todo-api.herokuapp.com/v1/tasks";
-
-    // let taskUsuario = JSON.stringify(newTask)
+    let newTaskJson = JSON.stringify(bodyNewTask); // Foi convertida para JSON para conseguirmos enviar para o servidor
 
     let configNewTasks = {
-      method: 'POST',
-      body: {
-        "description": inputTarefa,
-        "completed": false,
-      },
+      method: "POST",
+      body: newTaskJson,
       headers: {
-       authorization: tokenJwt,
+        "content-type": "application/json",
+        authorization: tokenJwt,
       },
     };
 
     fetch(endPointTask, configNewTasks)
-      .then(result => {
-          return result.json();
+      .then((result) => {
+        return result.json();
       })
-      .then(result => {
-          console.log(result);
+      .then((result) => {
+        console.log(result);
       })
-      .catch(e => {
-          console.log(e);
-      })
+      .catch((e) => {
+        console.log(e);
+      });
   });
 };
