@@ -57,7 +57,12 @@ botaoAcessar.addEventListener("click", (event) => {
         loginErro(erro);
       });
   } else {
-    alert("Ambos os campos devem ser informados!"); // se não, alerte.
+    Swal.fire({ // se não, alerte.
+      
+      icon: 'info',
+      title: "Ambos os campos devem ser informados!"
+      
+    })
     event.preventDefault(); //Não permite que o formulário seja executado / realizado o 'submit'
   }
 });
@@ -65,8 +70,15 @@ botaoAcessar.addEventListener("click", (event) => {
 function loginSucesso(tokenJwt) {
   localStorage.setItem("jwt", tokenJwt); // Salvando o token no localStorage para consulta no script de tarefas.
 
-  alert("Usuário logado com sucesso !");
-  location.href = "tarefas.html";
+  Swal.fire({
+    icon: 'success',
+    title: 'Usuário logado com sucesso !',
+    showConfirmButton: false,
+    timer: 1900
+  })
+  setTimeout(() => {
+    location.href = "tarefas.html";
+  }, 2000)
   
   // Direcionando para a página quando o user for valido
 }
@@ -79,9 +91,9 @@ function loginErro(erro) {
   let inputEmailValidacao = document.getElementById("inputEmail");
   let inputError = document.getElementById("inputPassword")
 
+ 
 
-
-  error.innerText = "Senha e/ou E-mail inválidos !";
+  // error.innerText = ";
   error.style.color = "red";
   error.style.fontSize = "11px";
   error.style.fontWeight = "bold";
@@ -89,6 +101,11 @@ function loginErro(erro) {
 
   inputError.style.border = `1px solid red`;
   inputEmailValidacao.style.border = `1px solid red`;
+  Swal.fire({
+    icon: 'error',
+    title: 'Senha e/ou E-mail inválidos!"',
+    text: 'Tente novamente!'
+  })
 }
 
 // @@ Validação quando sair do campo do input (blur)
