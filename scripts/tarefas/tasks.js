@@ -38,10 +38,10 @@ onload = () => {
     })
     .then((result) => {
       console.log(result);
-      result.forEach(element => {
-        console.log(element);
-      tarefaPendente(element)
-      }) 
+
+        console.log(result);
+      tarefaPendente(result)
+
 
     })
     .catch((erro) => {
@@ -90,17 +90,22 @@ onload = () => {
       
     let tarefasPendentesHtml = document.querySelector('.tarefas-pendentes')
         console.log(e);
-        const pendente = tarefasPendentesHtml.innerHTML = `
-        <li class="tarefa">
-            <div class="not-done" id="${e.id}"></div>
-            <div class="descricao">
-                <p class="nome">${e.description}</p>
-                <p class="timestamp"><i class="far fa-calendar-alt"></i> ${e.createdAt}</p>
-            </div>
-          </li>
-        `
+        e.forEach(evt => {
+          const pendente = tarefasPendentesHtml.innerHTML = `
+          <li class="tarefa">
+              <div class="not-done" id="${evt.id}"></div>
+              <div class="descricao">
+                  <p class="nome">${evt.description}</p>
+                  <p class="timestamp"><i class="far fa-calendar-alt"></i> ${evt.createdAt}</p>
+              </div>
+            </li>
+          `
+
+          
+        })
         
       tarefasPendentesHtml.appendChild(pendente)
+        
 
 
   }
