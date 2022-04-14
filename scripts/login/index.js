@@ -67,6 +67,7 @@ function loginSucesso(tokenJwt) {
 
   alert("Usuário logado com sucesso !");
   location.href = "tarefas.html";
+  
   // Direcionando para a página quando o user for valido
 }
 
@@ -77,6 +78,8 @@ function loginErro(erro) {
   let error = document.getElementById("inputSenhaValidacao")
   let inputEmailValidacao = document.getElementById("inputEmail");
   let inputError = document.getElementById("inputPassword")
+
+
 
   error.innerText = "Senha e/ou E-mail inválidos !";
   error.style.color = "red";
