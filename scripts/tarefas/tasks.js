@@ -38,16 +38,12 @@ onload = () => {
     })
     .then((result) => {
       console.log(result);
-      result.forEach(element => {
-        console.log(element);
-      tarefaPendente(element)
-      }) 
-
+      manipularTarefas(result);
     })
     .catch((erro) => {
       console.log(erro);
     });
-
+    
   // @@ Criando a requisição para criar uma tarefa e mostrar no console.
 
   let formTarefa = document.querySelector(".nova-tarefa button");
@@ -79,29 +75,23 @@ onload = () => {
       })
       .then((result) => {
         console.log(result);
+
+        window.location.reload();
       })
       .catch((e) => {
         console.log(e);
       });
   });
 
-  function tarefaPendente(e) {
- 
-      
-    let tarefasPendentesHtml = document.querySelector('.tarefas-pendentes')
-        console.log(e);
-        const pendente = tarefasPendentesHtml.innerHTML = `
-        <li class="tarefa">
-            <div class="not-done" id="${e.id}"></div>
-            <div class="descricao">
-                <p class="nome">${e.description}</p>
-                <p class="timestamp"><i class="far fa-calendar-alt"></i> ${e.createdAt}</p>
-            </div>
-          </li>
-        `
-        
-      tarefasPendentesHtml.appendChild(pendente)
-
-
+  function manipularTarefas(listar) {
+    for (let task of listar) {
+      if (task.completed) {
+        // Tarefas termminadas
+        renderizaTarefasTerminadas(task);
+      } else {
+        // Tarefas pendentes
+        renderizaTarefasPendentes(task);
+      }
+    }
   }
 };
