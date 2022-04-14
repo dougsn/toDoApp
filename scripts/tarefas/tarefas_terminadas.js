@@ -43,7 +43,7 @@ function renderizaTarefasTerminadas(tarefa) {
     <p class="nome">${tarefa.description}</p>
     <div>
         <button onclick = "returnTask(${tarefa.id})"><i class="fas fa-undo-alt change"></i></button>
-        <button><i class="far fa-trash-alt"></i></button>
+        <button onclick = "deleteTask(${tarefa.id})"><i class="far fa-trash-alt"></i></button>
     </div>
     </div>
   
