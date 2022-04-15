@@ -11,8 +11,8 @@ onload = () => {
     },
   };
 
-  const imgData = sessionStorage.getItem('imgData')
-    document.querySelector("#userImg").setAttribute("src", imgData)
+  const imgData = sessionStorage.getItem("imgData");
+  document.querySelector("#userImg").setAttribute("src", imgData);
 
   // @@ Criando a requisição para pegar as informações do usuário
 
@@ -47,7 +47,7 @@ onload = () => {
     .catch((erro) => {
       console.log(erro);
     });
-    
+
   // @@ Criando a requisição para criar uma tarefa e mostrar no console.
 
   let formTarefa = document.querySelector(".nova-tarefa button");

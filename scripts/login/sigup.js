@@ -5,17 +5,16 @@ let inputSenha = document.getElementById("inputSenha");
 let inputRepetirSenha = document.getElementById("inputRepetirSenha");
 let botaoCriarConta = document.getElementById("btnCriarConta");
 
-
 //--capturando a imagem--//
-document.querySelector("#userImage").addEventListener("change", function(){
-  const reader = new FileReader()
+document.querySelector("#userImage").addEventListener("change", function () {
+  const reader = new FileReader();
 
-  reader.addEventListener("load", ()=>{
-    sessionStorage.setItem('imgData', reader.result)
-  })
+  reader.addEventListener("load", () => {
+    sessionStorage.setItem("imgData", reader.result);
+  });
 
-  reader.readAsDataURL(this.files[0])
-})
+  reader.readAsDataURL(this.files[0]);
+});
 
 let campoNomeNormalizado;
 let campoApelidoNormalizado;
@@ -29,14 +28,12 @@ let novoUsuario = {
   email: "",
   password: "",
   imageUser: "",
-
 };
 
 let emailValido = false;
 let senhaValida = false;
 let nomeValido = false;
 let imageUser = false;
-
 
 // Validação para verificar se os campos estão preenchidos e se estiverem para normalizar, deixar sem espaços e tudo minusculo, exceto o apelido.
 
@@ -70,38 +67,33 @@ botaoCriarConta.addEventListener("click", (e) => {
     let endPointLogin = "https://ctd-todo-api.herokuapp.com/v1/users";
 
     let configNewUser = {
-      method: 'POST',
-      body: 
-        cadastroJson,
+      method: "POST",
+      body: cadastroJson,
       headers: {
-        'content-type': 'application/json',
+        "content-type": "application/json",
       },
     };
 
-    fetch(endPointLogin, configNewUser).then(
-      result => {
-        if(result.status == 201) {
+    fetch(endPointLogin, configNewUser)
+      .then((result) => {
+        if (result.status == 201) {
           return result.json();
         }
-    }
-    ).then(
-      result => {
-        cadastroSucesso()
-    }
-    ).catch(
-      erro => {
+      })
+      .then((result) => {
+        cadastroSucesso();
+      })
+      .catch((erro) => {
         console.log(erro);
-      }
-    );
+      });
   } else {
     alert("Ambos os campos devem ser preenchidos !");
   }
 });
 
 function cadastroSucesso() {
-  alert ("Cadastro efetuado com sucesso !")
-  location.href = "index.html"
-
+  alert("Cadastro efetuado com sucesso !");
+  location.href = "index.html";
 }
 
 // Validação do campo de nome
@@ -195,33 +187,35 @@ inputSenha.addEventListener("keyup", () => {
     senhaValida = false;
   }
 
-//  Validação Imagem do Usuário
+  //  Validação Imagem do Usuário
 
-function validarArquivo(){
-  var arquivoInput = document.getElementById('arquivo');
-  var caminhoArquivo = arquivoInput.value;
-  var extensoesPermitidas = /(.jpg|.jpeg|.png|.gif)$/i;
+  function validarArquivo() {
+    var arquivoInput = document.getElementById("arquivo");
+    var caminhoArquivo = arquivoInput.value;
+    var extensoesPermitidas = /(.jpg|.jpeg|.png|.gif)$/i;
 
-  if(!extensoesPermitidas.exec(caminhoArquivo)){
-      alert('Por favor envie um arquivo que tenha as extensões.jpeg/.jpg/.png/.gif .');
-      arquivoInput.value = '';
+    if (!extensoesPermitidas.exec(caminhoArquivo)) {
+      alert(
+        "Por favor envie um arquivo que tenha as extensões.jpeg/.jpg/.png/.gif ."
+      );
+      arquivoInput.value = "";
       return false;
-  }else{
+    } else {
       if (arquivoInput.files && arquivoInput.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function(e) {
-              document.getElementById('visualizarImagem').innerHTML = '';
-          };
-          reader.readAsDataURL(arquivoInput.files[0]);
-               console.log(arquivoInput.files[0].size / 1024 / 1024);
-               console.log(arquivoInput.files[0].size);
-        if (arquivoInput.files[0].size > 2097152) { 
-              alert("Tamanho do arquivo deve ser 2 MB!");
-              return false;
-          }
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById("visualizarImagem").innerHTML = "";
+        };
+        reader.readAsDataURL(arquivoInput.files[0]);
+        console.log(arquivoInput.files[0].size / 1024 / 1024);
+        console.log(arquivoInput.files[0].size);
+        if (arquivoInput.files[0].size > 2097152) {
+          alert("Tamanho do arquivo deve ser 2 MB!");
+          return false;
+        }
       }
+    }
   }
-}
   validacaoTelaDeLogin();
 });
 

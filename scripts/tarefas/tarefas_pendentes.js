@@ -5,10 +5,14 @@ function renderizaTarefasPendentes(tarefa) {
   liTarefaPendente.classList.add("tarefa");
 
   liTarefaPendente.innerHTML = `
-            <div class="not-done" onclick= getId(${tarefa.id})  id="${tarefa.id}"></div>
+            <div class="not-done" onclick= getId(${tarefa.id})  id="${
+    tarefa.id
+  }"></div>
             <div class="descricao">
                 <p class="nome">${tarefa.description}</p>
-                <p class="timestamp"><i class="far fa-calendar-alt"></i> ${tarefa.createdAt}</p>
+                <p class="timestamp"><i class="far fa-calendar-alt"></i> ${dayjs(
+                  tarefa.createdAt
+                ).format("DD/MM/YYYY - HH:mm:ss A dddd")}</p>
             </div>
 
         `;
@@ -48,11 +52,4 @@ function getId(id) {
     .catch((e) => {
       console.log(e);
     });
-
-    
 }
-
-
-
-
-  

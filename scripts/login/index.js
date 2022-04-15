@@ -57,12 +57,12 @@ botaoAcessar.addEventListener("click", (event) => {
         loginErro(erro);
       });
   } else {
-    Swal.fire({ // se não, alerte.
-      
-      icon: 'info',
-      title: "Ambos os campos devem ser informados!"
-      
-    })
+    Swal.fire({
+      // se não, alerte.
+
+      icon: "info",
+      title: "Ambos os campos devem ser informados!",
+    });
     event.preventDefault(); //Não permite que o formulário seja executado / realizado o 'submit'
   }
 });
@@ -71,41 +71,37 @@ function loginSucesso(tokenJwt) {
   localStorage.setItem("jwt", tokenJwt); // Salvando o token no localStorage para consulta no script de tarefas.
 
   Swal.fire({
-    icon: 'success',
-    title: 'Usuário logado com sucesso !',
+    icon: "success",
+    title: "Usuário logado com sucesso !",
     showConfirmButton: false,
-    timer: 1900
-  })
+    timer: 1900,
+  });
   setTimeout(() => {
     location.href = "tarefas.html";
-  }, 2000)
-  
+  }, 2000);
+
   // Direcionando para a página quando o user for valido
 }
-
 
 // @@ Função invocada quando há um erro de requisição na API
 
 function loginErro(erro) {
-  let error = document.getElementById("inputSenhaValidacao")
+  let error = document.getElementById("inputSenhaValidacao");
   let inputEmailValidacao = document.getElementById("inputEmail");
-  let inputError = document.getElementById("inputPassword")
+  let inputError = document.getElementById("inputPassword");
 
- 
-
-  // error.innerText = ";
   error.style.color = "red";
   error.style.fontSize = "11px";
   error.style.fontWeight = "bold";
-  error.style.marginTop = "10px"
+  error.style.marginTop = "10px";
 
   inputError.style.border = `1px solid red`;
   inputEmailValidacao.style.border = `1px solid red`;
   Swal.fire({
-    icon: 'error',
+    icon: "error",
     title: 'Senha e/ou E-mail inválidos!"',
-    text: 'Tente novamente!'
-  })
+    text: "Tente novamente!",
+  });
 }
 
 // @@ Validação quando sair do campo do input (blur)
@@ -148,7 +144,7 @@ campoSenhaLogin.addEventListener("change", () => {
     inputSenhaValidacao.style.fontSize = "8px";
     inputSenhaValidacao.style.fontWeight = "bold";
 
-    campoSenhaLogin.style.border = '1px solid red';
+    campoSenhaLogin.style.border = "1px solid red";
 
     emailEValido = false;
   }
