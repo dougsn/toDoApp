@@ -5,6 +5,18 @@ let inputSenha = document.getElementById("inputSenha");
 let inputRepetirSenha = document.getElementById("inputRepetirSenha");
 let botaoCriarConta = document.getElementById("btnCriarConta");
 
+
+//--capturando a imagem--//
+document.querySelector("#userImage").addEventListener("change", function(){
+  const reader = new FileReader()
+
+  reader.addEventListener("load", ()=>{
+    sessionStorage.setItem('imgData', reader.result)
+  })
+
+  reader.readAsDataURL(this.files[0])
+})
+
 let campoNomeNormalizado;
 let campoApelidoNormalizado;
 let campoEmailNormalizado;
@@ -16,11 +28,15 @@ let novoUsuario = {
   lastName: "",
   email: "",
   password: "",
+  imageUser: "",
+
 };
 
 let emailValido = false;
 let senhaValida = false;
 let nomeValido = false;
+let imageUser = false;
+
 
 // Validação para verificar se os campos estão preenchidos e se estiverem para normalizar, deixar sem espaços e tudo minusculo, exceto o apelido.
 
@@ -179,6 +195,33 @@ inputSenha.addEventListener("keyup", () => {
     senhaValida = false;
   }
 
+//  Validação Imagem do Usuário
+
+function validarArquivo(){
+  var arquivoInput = document.getElementById('arquivo');
+  var caminhoArquivo = arquivoInput.value;
+  var extensoesPermitidas = /(.jpg|.jpeg|.png|.gif)$/i;
+
+  if(!extensoesPermitidas.exec(caminhoArquivo)){
+      alert('Por favor envie um arquivo que tenha as extensões.jpeg/.jpg/.png/.gif .');
+      arquivoInput.value = '';
+      return false;
+  }else{
+      if (arquivoInput.files && arquivoInput.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+              document.getElementById('visualizarImagem').innerHTML = '';
+          };
+          reader.readAsDataURL(arquivoInput.files[0]);
+               console.log(arquivoInput.files[0].size / 1024 / 1024);
+               console.log(arquivoInput.files[0].size);
+        if (arquivoInput.files[0].size > 2097152) { 
+              alert("Tamanho do arquivo deve ser 2 MB!");
+              return false;
+          }
+      }
+  }
+}
   validacaoTelaDeLogin();
 });
 

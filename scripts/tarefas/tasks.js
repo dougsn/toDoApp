@@ -11,6 +11,9 @@ onload = () => {
     },
   };
 
+  const imgData = sessionStorage.getItem('imgData')
+    document.querySelector("#userImg").setAttribute("src", imgData)
+
   // @@ Criando a requisição para pegar as informações do usuário
 
   fetch(endPointLogin, configRequisicao)
