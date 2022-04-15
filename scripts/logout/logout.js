@@ -10,6 +10,7 @@ logOut.addEventListener("click", (e) => {
     title: "Você tem certeza que quer encerrar a sessão?",
     showDenyButton: true,
     confirmButtonText: "Sim",
+    denyButtonText: 'Não',
   }).then((result) => {
     /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
