@@ -11,7 +11,7 @@ onload = () => {
     },
   };
 
-  const imgData = sessionStorage.getItem("imgData");
+  const imgData = localStorage.getItem("imgData");
   document.querySelector("#userImg").setAttribute("src", imgData);
 
   // @@ Criando a requisição para pegar as informações do usuário

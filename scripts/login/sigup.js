@@ -10,7 +10,7 @@ document.querySelector("#userImage").addEventListener("change", function () {
   const reader = new FileReader();
 
   reader.addEventListener("load", () => {
-    sessionStorage.setItem("imgData", reader.result);
+    localStorage.setItem("imgData", reader.result);
   });
 
   reader.readAsDataURL(this.files[0]);
@@ -87,13 +87,28 @@ botaoCriarConta.addEventListener("click", (e) => {
         console.log(erro);
       });
   } else {
-    alert("Ambos os campos devem ser preenchidos !");
-  }
+    Swal.fire({
+      icon: "warning",
+      title: "Todos os campos devem ser preenchidos !",
+      showConfirmButton: false,
+      timer: 2000,
+    })
+    setTimeout(() => {
+      location.href = "signup.html";
+    }, 2100);
+ } 
 });
 
 function cadastroSucesso() {
-  alert("Cadastro efetuado com sucesso !");
-  location.href = "index.html";
+  Swal.fire({
+            icon: "success",
+            title: "Cadastro efetuado com sucesso !",
+            showConfirmButton: false,
+            timer: 2000,
+          })
+          setTimeout(() => {
+            location.href = "index.html";
+          }, 2100);
 }
 
 // Validação do campo de nome
