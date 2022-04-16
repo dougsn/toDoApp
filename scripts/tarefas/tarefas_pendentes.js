@@ -3,6 +3,9 @@ let tarefasPendentesHtml = document.querySelector(".tarefas-pendentes");
 function renderizaTarefasPendentes(tarefa) {
   let liTarefaPendente = document.createElement("li");
   liTarefaPendente.classList.add("tarefa");
+  liTarefaPendente.setAttribute("data-aos", "fade-right");
+  liTarefaPendente.setAttribute("data-aos-duration", "1000");
+
 
   liTarefaPendente.innerHTML = `
             <div class="not-done" onclick= getId(${tarefa.id})  id="${

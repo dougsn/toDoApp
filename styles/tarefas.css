@@ -277,13 +277,18 @@ a {
   .nova-tarefa {
     margin: 0 6%;
   }
-}
 
-@media (max-width: 650px) {
+  .tarefa:not(:last-child) .not-done::after {
+    height: 6.5em;
+    
+  } 
+
   .div-terminadas {
+    display: flex;
     justify-content: center;
   }
 }
+
 
 @media (max-width: 450px) {
 
@@ -306,6 +311,9 @@ a {
     font-size: 10px;
   }
 
+  .tarefa:not(:last-child) .not-done::after {
+    height: 7.8em;
+  } 
 
 
 

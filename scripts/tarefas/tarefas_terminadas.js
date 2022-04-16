@@ -3,6 +3,8 @@ let ulTarefaTerminada = document.querySelector(".tarefas-terminadas");
 function renderizaTarefasTerminadas(tarefa) {
   let liTarefaFinalizada = document.createElement("li");
   liTarefaFinalizada.classList.add("tarefa");
+  liTarefaFinalizada.setAttribute("data-aos", "fade-right");
+  liTarefaFinalizada.setAttribute("data-aos-duration", "1000");
 
   liTarefaFinalizada.innerHTML = `
     <div class="done"></div>

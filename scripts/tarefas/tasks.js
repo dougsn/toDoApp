@@ -1,4 +1,6 @@
 onload = () => {
+  AOS.init();
+
   let nomeUsuario = document.querySelector(".user-info p");
   let endPointLogin = "https://ctd-todo-api.herokuapp.com/v1/users/getMe";
 
