@@ -17,10 +17,11 @@ form {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin: 2em auto;
+  margin: 2em 15px;
   box-shadow: 0 5px 5px lightgrey;
   padding: 1em 2.5em;
   box-sizing: border-box;
+  border-radius: 5px;
 }
 
 form:after {
@@ -31,6 +32,8 @@ form:after {
   top: 0;
   left: 0;
   background: linear-gradient(var(--primary), var(--secondary));
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 
@@ -77,24 +80,57 @@ button:disabled {
   color: grey;
   font-size: 2em;
 }
+
 .ingressar{
   text-align: center;
+  background-color: var(--secondary);
+  padding: 15px;
+  border-radius: 12px;
 }
+
+.ingressar a {
+  text-decoration: none;
+  color: var(--app-grey);
+  font-weight:400;
+} 
+
 .left{
-  width: 50%;  
-  background-color: white;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-image: url('../assets/pessoa-login.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  height: 100vh;
+  width: 100vw;
 }
-.left img{
-  width:60%;
-}
+
 .right{
-  width: 50%;
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  background-color: #83818159;
+  backdrop-filter: blur(4px);
+
+}
+
+
+
+/* Início da Responsividade*/
+
+@media (max-width: 750px) {
+
+  .swal2-container.swal2-center > .swal2-popup {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 450px) {
+
+  .swal2-container.swal2-center > .swal2-popup {
+    font-size: 10px;
+  }
 }

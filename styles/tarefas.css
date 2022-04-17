@@ -1,6 +1,5 @@
 @import url("./common.css");
 
-
 header {
   display: flex;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
@@ -97,7 +96,7 @@ a {
   margin-right: 1em;
   opacity: 0.5;
   cursor: pointer;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .nova-tarefa button:hover {
@@ -268,7 +267,7 @@ a {
   .nova-tarefa button img {
     height: 20px;
     width: 20px;
-}
+  }
   .nova-tarefa button {
     margin-left: 1em;
     /* margin-right: 0; */
@@ -280,18 +279,19 @@ a {
 
   .tarefa:not(:last-child) .not-done::after {
     height: 6.5em;
-    
-  } 
+  }
 
   .div-terminadas {
     display: flex;
     justify-content: center;
   }
+
+  .swal2-container.swal2-center > .swal2-popup {
+    font-size: 12px;
+  }
 }
 
-
 @media (max-width: 450px) {
-
   header {
     justify-content: center;
     padding: 0 1em;
@@ -313,8 +313,9 @@ a {
 
   .tarefa:not(:last-child) .not-done::after {
     height: 7.8em;
-  } 
+  }
 
-
-
+  .swal2-container.swal2-center > .swal2-popup {
+    font-size: 10px;
+  }
 }

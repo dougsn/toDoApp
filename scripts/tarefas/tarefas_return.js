@@ -19,39 +19,39 @@ function returnTask(event) {
     },
   };
 
-  fetch(endPointUpdateTask, configUpdateTasks)
-    .then((result) => {
-      return result.json();
-    })
-    .then((result) => {
+  Swal.fire({
+    icon: "question",
+    title: "Você quer alterar a tarefa para em andamento ?",
+    showDenyButton: true,
+    confirmButtonText: "Sim",
+    denyButtonText: 'Não',
+  }).then((result) => {
+    if (result.isConfirmed) {
       Swal.fire({
-        icon: 'question',
-        title: 'Você quer alterar a tarefa para em andamento ?',
-        showDenyButton: true,
-        confirmButtonText: 'Sim',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            icon: 'warning',
-            title: 'Tarefa alterada para em andamento!',
-            showConfirmButton: false,
-            timer: 1000
-          })
-          setTimeout(() => {
-            window.location.reload();
-          }, 1100)
-    
-        } else if (result.isDenied) {
-          Swal.fire({
-            icon: 'success',
-            title: 'Tarefa conluida!',
-            showConfirmButton: false,
-            timer: 1000
-          })
-        }
-      })
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+        icon: "info",
+        title: "Tarefa alterada para em andamento!",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+
+      fetch(endPointUpdateTask, configUpdateTasks)
+        .then((result) => {
+          return result.json();
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1100);
+    } else if (result.isDenied) {
+      Swal.fire({
+        icon: "success",
+        title: "Tarefa Mantida!",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    }
+  });
 }

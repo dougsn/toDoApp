@@ -33,6 +33,7 @@ let novoUsuario = {
 let emailValido = false;
 let senhaValida = false;
 let nomeValido = false;
+let repetirSenha = false;
 let imageUser = false;
 
 // Validação para verificar se os campos estão preenchidos e se estiverem para normalizar, deixar sem espaços e tudo minusculo, exceto o apelido.
@@ -243,7 +244,7 @@ inputRepetirSenha.addEventListener("keyup", () => {
     smallRepetirSenha.style.color = "#45dd45";
 
     inputRepetirSenha.style.border = "1px solid #45dd45a1";
-    senhaValida = true;
+    repetirSenha = true;
   } else {
     smallRepetirSenha.innerHTML = "Senha errada";
     smallRepetirSenha.style.fontWeight = "bold";
@@ -252,14 +253,14 @@ inputRepetirSenha.addEventListener("keyup", () => {
     smallRepetirSenha.style.fontSize = "11px";
 
     inputRepetirSenha.style.border = "1px solid red";
-    senhaValida = false;
+    repetirSenha = false;
   }
   validacaoTelaDeLogin();
 });
 
 function validacaoTelaDeLogin() {
   // Função criada para haiblitar o botão ou não.
-  if (emailValido === true && senhaValida === true && nomeValido === true) {
+  if (emailValido === true && senhaValida === true && nomeValido === true && repetirSenha === true) {
     // Se o e-mail for válido (true), ele habilita o botão e troca o texto para acessar
 
     botaoCriarConta.removeAttribute("disabled");
