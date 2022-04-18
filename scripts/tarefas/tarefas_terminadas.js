@@ -56,7 +56,7 @@ function getId(id) {
     .then((result) => {
       Swal.fire({
         icon: "success",
-        title: "Tarefa concluída com suceso !",
+        title: "Tarefa concluída com sucesso !",
         showConfirmButton: false,
         timer: 1300,
       });
