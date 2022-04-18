@@ -28,7 +28,7 @@ function returnTask(event) {
   }).then((result) => {
     if (result.isConfirmed) {
       Swal.fire({
-        icon: "info",
+        icon: "success",
         title: "Tarefa alterada para em andamento!",
         showConfirmButton: false,
         timer: 1000,
@@ -47,7 +47,7 @@ function returnTask(event) {
       }, 1100);
     } else if (result.isDenied) {
       Swal.fire({
-        icon: "success",
+        icon: "info",
         title: "Tarefa Mantida!",
         showConfirmButton: false,
         timer: 1000,
