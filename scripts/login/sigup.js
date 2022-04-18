@@ -50,9 +50,9 @@ botaoCriarConta.addEventListener("click", (e) => {
     campoEmailNormalizado = conventerValorRecebidoParaMinusculo(
       campoEmailNormalizado
     );
-    campoSenhaNormalizado = conventerValorRecebidoParaMinusculo(
-      inputSenha.value
-    );
+    // campoSenhaNormalizado = conventerValorRecebidoParaMinusculo(
+    //   inputSenha.value // @@ Foi retirado, para que as senhas pudessem ter caracteres maiúsculas.
+    // ); 
     campoRepetirSenhaNormalizado = conventerValorRecebidoParaMinusculo(
       inputRepetirSenha.value
     );
@@ -60,7 +60,7 @@ botaoCriarConta.addEventListener("click", (e) => {
     novoUsuario.firstName = campoNomeNormalizado;
     novoUsuario.lastName = campoApelidoNormalizado;
     novoUsuario.email = campoEmailNormalizado;
-    novoUsuario.password = campoSenhaNormalizado;
+    novoUsuario.password = inputSenha.value; // Não foi normalizada para que a senha pudesse ser maiúscula
     novoUsuario.repetirSenha = campoRepetirSenhaNormalizado;
 
     // @ Criando um novo usuário pela API
@@ -189,6 +189,8 @@ inputSenha.addEventListener("keyup", () => {
     smallSenha.innerText = "Estamos quase lá 😀";
     smallSenha.style.marginTop = "10px";
     smallSenha.style.fontSize = "11px";
+    senhaValida = true;
+    
   } else if (inputSenha.value != "" && inputSenha.value.length >= 8) {
     inputSenha.style.border = "1px solid #45dd45a1";
     smallSenha.style.fontWeight = "bold";
