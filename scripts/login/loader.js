@@ -103,6 +103,7 @@ function removerSkeleton(conteiner) {
   
   // Selecionamos todos os skeletons dentro deste conteiner
   const skeletons = document.querySelectorAll('.skeleton-conteiner');
+  // '.skeleton-conteiner'
   
   // Iteramos sobre a lista de skeletons e removemos cada um deles
   // do referido conteiner

@@ -56,8 +56,6 @@
 
 
 
-
-
 /* SKELETON */
 .skeleton-conteiner {
   display: flex;
@@ -106,3 +104,10 @@
   }
  }
  
+
+ @media (max-width:750px) {
+  .skeleton-conteiner {
+   width: 150px;
+  }
+}
+

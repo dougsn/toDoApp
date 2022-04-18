@@ -95,10 +95,10 @@ button:disabled {
 } 
 
 .left{
-  background-image: url('../assets/pessoa-login.png');
+  background-image: url('../assets/tela_login_toDo.png');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: top;
+  background-position: center;
   height: 100vh;
   width: 100vw;
 }
