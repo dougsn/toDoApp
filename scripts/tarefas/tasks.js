@@ -1,6 +1,7 @@
 onload = () => {
   AOS.init();
 
+  renderizarSkeletons(5, ".tarefas-pendentes");
   let nomeUsuario = document.querySelector(".user-info p");
   let endPointLogin = "https://ctd-todo-api.herokuapp.com/v1/users/getMe";
 
@@ -42,9 +43,10 @@ onload = () => {
       }
     })
     .then((result) => {
-      console.log(result);
-
-      manipularTarefas(result);
+      setTimeout(() => {
+        manipularTarefas(result);
+        removerSkeleton(".tarefas-pendentes");
+      }, 1000);
     })
     .catch((erro) => {
       console.log(erro);
@@ -58,7 +60,7 @@ onload = () => {
     e.preventDefault();
 
     const inputTarefa = document.getElementById("novaTarea").value;
-    if (inputTarefa == "" || inputTarefa == " "){
+    if (inputTarefa == "" || inputTarefa == " ") {
       Swal.fire({
         icon: "error",
         title: "Campo vazio !",
@@ -70,9 +72,9 @@ onload = () => {
         description: inputTarefa,
         completed: false,
       };
-  
+
       let newTaskJson = JSON.stringify(bodyNewTask); // Foi convertida para JSON para conseguirmos enviar para o servidor
-  
+
       let configNewTasks = {
         method: "POST",
         body: newTaskJson,
@@ -81,28 +83,26 @@ onload = () => {
           authorization: tokenJwt,
         },
       };
-  
+
       fetch(endPointTask, configNewTasks)
         .then((result) => {
           return result.json();
         })
         .then((result) => {
           console.log(result);
-  
+
           window.location.reload();
         })
         .catch((e) => {
           console.log(e);
-        })
+        });
     }
-    
   });
-
 
   function manipularTarefas(listar) {
     for (let task of listar) {
       if (task.completed) {
-        // Tarefas termminadas
+        // Tarefas terminadas
         renderizaTarefasTerminadas(task);
       } else {
         // Tarefas pendentes

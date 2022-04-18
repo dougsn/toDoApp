@@ -49,7 +49,7 @@ function getId(id) {
     })
     .then((result) => {
       console.log(result);
-
+      
       window.location.reload();
     })
     .catch((e) => {

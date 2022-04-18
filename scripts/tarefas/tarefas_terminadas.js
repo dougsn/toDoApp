@@ -54,6 +54,7 @@ function getId(id) {
       return result.json();
     })
     .then((result) => {
+      
       Swal.fire({
         icon: "success",
         title: "Tarefa concluída com sucesso !",
