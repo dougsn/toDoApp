@@ -52,7 +52,7 @@ botaoCriarConta.addEventListener("click", (e) => {
     );
     // campoSenhaNormalizado = conventerValorRecebidoParaMinusculo(
     //   inputSenha.value // @@ Foi retirado, para que as senhas pudessem ter caracteres maiúsculas.
-    // ); 
+    // );
     campoRepetirSenhaNormalizado = conventerValorRecebidoParaMinusculo(
       inputRepetirSenha.value
     );
@@ -82,10 +82,12 @@ botaoCriarConta.addEventListener("click", (e) => {
         }
       })
       .then((result) => {
+        mostrarSpinner();
         cadastroSucesso();
       })
       .catch((erro) => {
         console.log(erro);
+        ocultarSpinner();
       });
   } else {
     Swal.fire({
@@ -93,23 +95,26 @@ botaoCriarConta.addEventListener("click", (e) => {
       title: "Todos os campos devem ser preenchidos !",
       showConfirmButton: false,
       timer: 2000,
-    })
+    });
     setTimeout(() => {
       location.href = "signup.html";
     }, 2100);
- } 
+  }
 });
 
 function cadastroSucesso() {
-  Swal.fire({
-            icon: "success",
-            title: "Cadastro efetuado com sucesso !",
-            showConfirmButton: false,
-            timer: 2000,
-          })
-          setTimeout(() => {
-            location.href = "index.html";
-          }, 2100);
+  setTimeout(() => {
+    Swal.fire({
+      icon: "success",
+      title: "Cadastro efetuado com sucesso !",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }, 1000);
+
+  setTimeout(() => {
+    location.href = "index.html";
+  }, 2500);
 }
 
 // Validação do campo de nome
@@ -190,7 +195,6 @@ inputSenha.addEventListener("keyup", () => {
     smallSenha.style.marginTop = "10px";
     smallSenha.style.fontSize = "11px";
     senhaValida = true;
-    
   } else if (inputSenha.value != "" && inputSenha.value.length >= 8) {
     inputSenha.style.border = "1px solid #45dd45a1";
     smallSenha.style.fontWeight = "bold";
@@ -262,7 +266,12 @@ inputRepetirSenha.addEventListener("keyup", () => {
 
 function validacaoTelaDeLogin() {
   // Função criada para haiblitar o botão ou não.
-  if (emailValido === true && senhaValida === true && nomeValido === true && repetirSenha === true) {
+  if (
+    emailValido === true &&
+    senhaValida === true &&
+    nomeValido === true &&
+    repetirSenha === true
+  ) {
     // Se o e-mail for válido (true), ele habilita o botão e troca o texto para acessar
 
     botaoCriarConta.removeAttribute("disabled");

@@ -70,12 +70,17 @@ botaoAcessar.addEventListener("click", (event) => {
 function loginSucesso(tokenJwt) {
   localStorage.setItem("jwt", tokenJwt); // Salvando o token no localStorage para consulta no script de tarefas.
 
-  Swal.fire({
-    icon: "success",
-    title: "Usuário logado com sucesso !",
-    showConfirmButton: false,
-    timer: 1900,
-  });
+  mostrarSpinner();
+
+  setTimeout(() => {
+    Swal.fire({
+      icon: "success",
+      title: "Usuário logado com sucesso !",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  }, 1000);
+
   setTimeout(() => {
     location.href = "tarefas.html";
   }, 2000);
