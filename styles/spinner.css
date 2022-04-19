@@ -105,9 +105,9 @@
  }
  
 
- @media (max-width:750px) {
-  .skeleton-conteiner {
-   width: 150px;
-  }
+@media (max-width:550px) {
+  .skeleton-card {
+    width:90px;
+    margin-left: -20px;
+   }
 }
-

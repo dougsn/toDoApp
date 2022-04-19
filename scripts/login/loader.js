@@ -97,16 +97,16 @@ function renderizarSkeletons(quantidade, conteiner) {
  Esta função receberá o nome do conteiner dentro do qual
  se encontram os skeletons que desejamos remover
 */
-function removerSkeleton(conteiner) {
-  // Selecionamos o conteiner
-  const conteinerTarefas = document.querySelector(conteiner);
+// function removerSkeleton(conteiner) {
+//   // Selecionamos o conteiner
+//   const conteinerTarefas = document.querySelector(conteiner);
   
-  // Selecionamos todos os skeletons dentro deste conteiner
-  const skeletons = document.querySelectorAll('.skeleton-conteiner');
-  // '.skeleton-conteiner'
+//   // Selecionamos todos os skeletons dentro deste conteiner
+//   const skeletons = document.querySelectorAll('.skeleton-conteiner');
+//   // '.skeleton-conteiner'
   
-  // Iteramos sobre a lista de skeletons e removemos cada um deles
-  // do referido conteiner
-  skeletons.forEach((skeleton) => conteinerTarefas.removeChild(skeleton));
- }
+//   // Iteramos sobre a lista de skeletons e removemos cada um deles
+//   // do referido conteiner
+//   skeletons.forEach((skeleton) => conteinerTarefas.removeChild(skeleton));
+//  }
  
