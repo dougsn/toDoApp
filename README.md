@@ -27,6 +27,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <p align="center">Made with 💜 by </p>
 
-Douglas Nascimento 🚀 [See my LinkdIn](https://www.linkedin.com/in/douglas-silva-nascimento)
-Arthur Campolina 🚀 [See my LinkdIn](https://www.linkedin.com/in/arthur-campolina)
+Douglas Nascimento 🚀 [See my LinkdIn](https://www.linkedin.com/in/douglas-silva-nascimento)</br>
+Arthur Campolina 🚀 [See my LinkdIn](https://www.linkedin.com/in/arthur-campolina)</br>
 Guilherme Carvalho 🚀 [See my LinkdIn](https://www.linkedin.com/mwlite/in/guilhermejump)
