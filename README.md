@@ -9,8 +9,11 @@
 - [x] Editar Tarefa
 - [x] Atualizar Tarefa
 - [x] Deletar Tarefa
+- [x] Validações dos Inputs
 
-<h1 align="center">Criar gif da aplicação rodando</h1>
+<h1 align="center">
+    <img alt="Git da aplicação To Do" title="To Do" src="./assets/toDoApp.gif">
+</h1>
 
 ### 🛠 Tecnologias
 
@@ -22,4 +25,8 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 - [JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript?msclkid=826fa765c66211ec95f90471a17271d2)
 
-Made with 💜 by Douglas Nascimento 🚀 [See my LinkdIn](https://www.linkedin.com/in/douglas-silva-nascimento)
+<p align="center">Made with 💜 by </p>
+
+Douglas Nascimento 🚀 [See my LinkdIn](https://www.linkedin.com/in/douglas-silva-nascimento)
+Arthur Campolina 🚀 [See my LinkdIn](https://www.linkedin.com/in/arthur-campolina)
+Guilherme Carvalho 🚀 [See my LinkdIn](https://www.linkedin.com/mwlite/in/guilhermejump)
