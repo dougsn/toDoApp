@@ -65,7 +65,7 @@ botaoCriarConta.addEventListener("click", (e) => {
 
     // @ Criando um novo usuário pela API
     let cadastroJson = JSON.stringify(novoUsuario);
-    let endPointLogin = "https://ctd-todo-api.herokuapp.com/v1/users";
+    let endPointLogin = "https://ctd-fe2-todo-v2.herokuapp.com/v1/users";
 
     let configNewUser = {
       method: "POST",

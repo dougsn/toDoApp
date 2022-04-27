@@ -1,7 +1,7 @@
 function returnTask(event) {
   let tokenJwt = localStorage.getItem("jwt");
 
-  let endPointUpdateTask = `https://ctd-todo-api.herokuapp.com/v1/tasks/${event}`;
+  let endPointUpdateTask = `https://ctd-fe2-todo-v2.herokuapp.com/v1/tasks/${event}`;
 
   let bodyUpdateTask = {
     completed: false,

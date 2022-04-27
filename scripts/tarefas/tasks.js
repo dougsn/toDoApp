@@ -3,7 +3,7 @@ onload = () => {
 
   renderizarSkeletons(5, ".tarefas-pendentes");
   let nomeUsuario = document.querySelector(".user-info p");
-  let endPointLogin = "https://ctd-todo-api.herokuapp.com/v1/users/getMe";
+  let endPointLogin = "https://ctd-fe2-todo-v2.herokuapp.com/v1/users/getMe";
 
   let tokenJwt = localStorage.getItem("jwt");
   console.log(tokenJwt);
@@ -32,7 +32,7 @@ onload = () => {
       console.log(erro);
     });
 
-  let endPointTask = "https://ctd-todo-api.herokuapp.com/v1/tasks";
+  let endPointTask = "https://ctd-fe2-todo-v2.herokuapp.com/v1/tasks";
 
   // @@ Criando a requisição para pegar as informações das tarefas
 
