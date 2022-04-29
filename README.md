@@ -1,6 +1,6 @@
 # toDoApp
 
-<p align="center">Esse projeto foi criado para a validação dos conceitos abordados na materia de fron-end do curso <b>Certified Tech Developer</b></p>
+<p align="center">Esse projeto foi criado para a validação dos conceitos abordados na matéria de fron-end do curso <b>Certified Tech Developer</b></p>
 
 ### Features
 - [x] Criar usuário
